@@ -24,8 +24,7 @@ pip install -r requirements.txt
 ## Software Overview
 
 - **Language:** Python
-- **Primary Library:** [`py-kelctl`](https://pypi.org/project/py-kelctl/)
-- **Data Format:** CSV
+- **Primary Library:** [`pyvisa`](https://pypi.org/project/PyVISA/)
 
 The `pyvisa` package provides a high-level Python interface for RIGOL SCPI communication, allowing control of:
 - Voltage/current commands
