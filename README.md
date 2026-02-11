@@ -52,7 +52,7 @@ ID should look like this: 'USB0::6833::3601::DP8D202700178::0::INSTR'
 Update ID with 'nano /Examples/example2.py' and execute:
 
 ```
-sudo python3 -m /Examples/example1.py
+sudo python3 -m /Examples/example2.py
 ```
 
 (USB ID and network communication may need to be enabled via the RIGOL DP800 GUI)
