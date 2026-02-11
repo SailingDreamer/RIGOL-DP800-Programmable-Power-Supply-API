@@ -49,7 +49,7 @@ Please use 'lsusb' on linux to extract the specific RIGOL DP800 USB ID
 
 ID should look like this: 'USB0::6833::3601::DP8D202700178::0::INSTR'
 
-Update ID with 'nano /Examples/example1.py' and execute:
+Update ID with 'nano /Examples/example2.py' and execute:
 
 ```
 sudo python3 -m /Examples/example1.py
