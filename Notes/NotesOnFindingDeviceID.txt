@@ -1,0 +1,12 @@
+Use 'lsusb' command to find: Bus 001 Device 009: ID 1ab1:0e11 Rigol Technologies DP800 Serials
+notice "1ab1:0e11" device
+
+
+add rigol rules: sudo nano /etc/udev/rules.d/99-rigol.rules
+add new line to file: SUBSYSTEM=="usb", ATTR{idVendor}=="1ab1", ATTR{idProduct}=="0e11", MODE="0666", GROUP="usbusers"
+
+Apply rules and restart: sudo udevadm control --reload-rules
+sudo udevadm trigger
+
+run lsusb again and look for an output akin to: 'USB0::6833::3601::DP8D202700178::0::INSTR'
+replace <address> in 'ps = PowerSupply(<address>)' with the newly found address.

@@ -1,0 +1,6 @@
+# stats on the samsung inr18650-35e battery:
+# max charge voltage of 4.2V
+# standard current of 1.7A
+# recommended cut off of 68mA
+# nominal cell voltage of 3.6V
+# CC-CV charging system
