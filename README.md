@@ -9,7 +9,6 @@ pip install -r requirements.txt
 ## Project Goals
 
 - Programmatically control a **DP800 Series Power Supply**
-- 
 - Charge connected battery via constant current, voltage, and power settings
 - Implement voltage and current protection limits
 - Control beeping and error limits
