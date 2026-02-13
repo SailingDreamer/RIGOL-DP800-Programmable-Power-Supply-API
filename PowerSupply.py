@@ -20,7 +20,8 @@ class PowerSupply:
         #set dp800a address for future reference (none of now)
         self.dp800Address = dp800Address
         
-        self.initializeConnection(dp800Address)
+        self.initializeConnection()
+        # self.initializeConnection(dp800Address)
 
 
 
@@ -93,20 +94,20 @@ class PowerSupply:
         self.setOutputAmperage(amps)
         
     def getOutputVoltage(self):
-        return self.instrument.query(':MEAS:VOLT? CH1')
+        return float(self.instrument.query(':MEAS:VOLT? CH1'))
 
     def getOutputAmperage(self):
-        return self.instrument.query(':MEAS:CURR? CH1')
+        return float(self.instrument.query(':MEAS:CURR? CH1'))
 
     def getOutputResistance(self):
-        ampsOut = self.getOutputAmperage()
-        voltsOut = self.getOutputVoltage()
+        ampsOut = float(self.getOutputAmperage())
+        voltsOut = float(self.getOutputVoltage())
             
         return voltsOut/ampsOut
 
     def getOutputWatts(self):
-        ampsOut = self.getOutputAmperage()
-        voltsOut = self.getOutputVoltage()
+        ampsOut = float(self.getOutputAmperage())
+        voltsOut = float(self.getOutputVoltage())
             
         return voltsOut*ampsOut
 
@@ -151,7 +152,7 @@ class PowerSupply:
         while True:
             time.sleep(1)
             
-            if (self.getOutputAmperage()/1000 < milliCutOff):
+            if (self.getOutputAmperage() < milliCutOff/1000):
                 break
             
             if (not headless):
@@ -184,7 +185,7 @@ class PowerSupply:
             time.sleep(2)
             
             # In the event amperage is less than cut off threshold and voltage is over limit
-            if ((self.getOutputAmperage()/1000 < milliCutOff) and not isVoltageUnderLimit):
+            if ((self.getOutputAmperage() < milliCutOff/1000) and not isVoltageUnderLimit):
                 break
             
             if (not headless):
@@ -221,7 +222,7 @@ class PowerSupply:
             time.sleep(2)
             
             # In the event amperage is less than cut off threshold and voltage is over limit
-            if ((self.getOutputAmperage()/1000 < milliCutOff) and not isVoltageUnderLimit):
+            if ((self.getOutputAmperage() < milliCutOff/1000) and not isVoltageUnderLimit):
                 break
             
             if (not headless):
@@ -271,6 +272,9 @@ class PowerSupply:
     def soundErrorBeep(self):
         self.instrument.write(':SYSTem:BEEPer:IMMediate')
         
+    def zeroOutput(self):
+        self.setOutputOn()
+        self.setVoltageAndAmps(0, 0)
         
     def emergencyDisable(self):
         self.setVoltageAndAmps(0, 0)
